@@ -1,5 +1,6 @@
 package com.voting.simulator.controller;
 
+import com.voting.simulator.controller.dto.SwitchSettingParam;
 import com.voting.simulator.service.VoteGeneratorService;
 import com.voting.simulator.service.dto.GeneratorSwitchDto;
 import lombok.RequiredArgsConstructor;

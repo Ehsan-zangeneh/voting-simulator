@@ -1,4 +1,4 @@
-package com.voting.simulator.controller;
+package com.voting.simulator.controller.dto;
 
 import lombok.Data;
 
