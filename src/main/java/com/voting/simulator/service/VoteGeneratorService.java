@@ -1,8 +1,13 @@
 package com.voting.simulator.service;
 
+import com.voting.simulator.common.VotingConstant;
+import com.voting.simulator.common.stream.StreamPublisher;
+import com.voting.simulator.common.stream.model.EventMessage;
 import com.voting.simulator.model.VoteEvent;
 import com.voting.simulator.service.dto.GeneratorSwitchDto;
-import lombok.*;
+import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
+import lombok.Data;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -10,6 +15,7 @@ import org.springframework.stereotype.Service;
 public class VoteGeneratorService {
 
     private final VoteEventRandomGenerator randomGenerator;
+    private final StreamPublisher publisher;
     private final GeneratorSwitch generatorSwitch = new GeneratorSwitch();
 
     public void start(GeneratorSwitchDto switchDto) {
@@ -28,12 +34,14 @@ public class VoteGeneratorService {
         this.generatorSwitch.setOn(false);
     }
 
-
     @SneakyThrows
     private void triggerGenerator() {
         while(this.generatorSwitch.isOn()) {
             Thread.sleep(this.generatorSwitch.getSleepDuration());
-            System.out.println(this.getVoteEvent());
+            this.publisher.send(EventMessage.builder()
+                            .message(this.getVoteEvent())
+                            .channelName(VotingConstant.VOTE_CHANNEL_OUT)
+                    .build());
         }
     }
 
@@ -44,7 +52,6 @@ public class VoteGeneratorService {
                 .voteOptions(randomGenerator.getVote())
                 .build();
     }
-
 
     @Data
     private static class GeneratorSwitch {
@@ -57,6 +64,5 @@ public class VoteGeneratorService {
             }
         }
     }
-
 
 }
