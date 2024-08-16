@@ -26,5 +26,4 @@ public class VoteEventRandomGenerator {
          return VoteOptions.values()[ordinal];
     }
 
-
 }

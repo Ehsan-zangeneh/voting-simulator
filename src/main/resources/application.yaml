@@ -8,3 +8,11 @@ spring:
         vote-channel-out:
           destination: vote.channel
           contentType: application/json
+
+
+
+simulator:
+  thread:
+    settings:
+      minimum-number-of-thread: 1
+      maximum-number-of-thread: 10
