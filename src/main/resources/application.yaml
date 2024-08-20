@@ -3,10 +3,10 @@ spring:
     stream:
       kafka:
         binder:
-          brokers: localhost:9092
+          brokers: generalBroker:9092
       bindings:
         vote-channel-out:
-          destination: vote.channel
+          destination: vote-channel
           contentType: application/json
 
 

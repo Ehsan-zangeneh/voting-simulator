@@ -1,4 +1,5 @@
 plugins {
+    id 'org.springframework.boot' version '3.1.0'
     id 'java'
 }
 
@@ -12,7 +13,6 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web:3.1.0'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:3.1.0'
     implementation 'org.springframework.cloud:spring-cloud-starter-stream-kafka:4.0.5'
 
     runtimeOnly 'com.h2database:h2:2.2.220'
@@ -21,6 +21,18 @@ dependencies {
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0'
 
 }
+
+jar {
+    archiveBaseName = 'voting-simulator'
+    archiveVersion = '1.0.0'
+    archiveExtension = 'jar'
+    manifest {
+        attributes(
+                'Main-Class': 'com.voting.simulator.VotingSimulatorApplication'
+        )
+    }
+}
+
 
 test {
     useJUnitPlatform()
