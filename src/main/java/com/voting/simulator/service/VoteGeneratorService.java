@@ -13,6 +13,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 @RequiredArgsConstructor
 @ConfigurationProperties(prefix = "simulator.thread.settings")
@@ -67,6 +69,7 @@ public class VoteGeneratorService {
                 .userId(randomGenerator.getUserId())
                 .topicId(randomGenerator.getTopicId())
                 .voteOptions(randomGenerator.getVote())
+                .createdDate(LocalDateTime.now())
                 .build();
     }
 

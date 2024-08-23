@@ -31,6 +31,32 @@ services:
       - "8080:8080"
     networks:
       - my-network
+
+
+
+  db:
+    image: docker.arvancloud.ir/postgres
+    container_name: database
+    environment:
+      POSTGRES_USER: ehsan
+      POSTGRES_PASSWORD: ehsan
+      POSTGRES_DB: vote_service
+    ports:
+      - "5432:5432"
+    networks:
+      - my-network
+
+
+
+  adminer:
+    image: docker.arvancloud.ir/adminer
+    container_name: adminer
+    ports:
+      - "8090:8080"
+    networks:
+      - my-network
+
+
   
   
       
