@@ -2,6 +2,7 @@ package com.voting.simulator.controller;
 
 import com.voting.simulator.controller.dto.SwitchSettingParam;
 import com.voting.simulator.service.VoteGeneratorService;
+import com.voting.simulator.service.VoteStandardTestService;
 import com.voting.simulator.service.dto.GeneratorSwitchDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 public class VoteSimulatorController {
 
     private final VoteGeneratorService voteGeneratorService;
+    private final VoteStandardTestService voteStandardTestService;
 
     @PostMapping("/start")
     public void start(@RequestBody SwitchSettingParam switchDto) {
@@ -24,6 +26,11 @@ public class VoteSimulatorController {
     @GetMapping("/stop")
     public void stop() {
         voteGeneratorService.stop();
+    }
+
+    @GetMapping("standard/test")
+    public void test() {
+        voteStandardTestService.start();
     }
 
 

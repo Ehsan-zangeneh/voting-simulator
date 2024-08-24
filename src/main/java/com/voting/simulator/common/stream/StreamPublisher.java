@@ -17,6 +17,7 @@ public class StreamPublisher {
 
         this.bridge.send(message.getChannelName(),
                 MessageBuilder.withPayload(message.getMessage())
+                        .setHeader("partitionKey", message.getMessage().hashCode())
                         .build()
         );
         log.info("channel:{}, message:{}",message.getChannelName(), message.getMessage() );

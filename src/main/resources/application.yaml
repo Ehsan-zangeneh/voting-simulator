@@ -8,6 +8,9 @@ spring:
         vote-channel-out:
           destination: vote-channel
           contentType: application/json
+          producer:
+            partition-key-expression: headers['partitionKey']
+            partition-count: 5
 
 
 
